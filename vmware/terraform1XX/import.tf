@@ -1,13 +1,13 @@
 ############### Optinal settings in provider ##########
 provider "vsphere" {
-    allow_unverified_ssl = "true"
+  allow_unverified_ssl = "true"
 }
 
 #########################################################
 ##### Resource : vm_1
 #########################################################
 variable "name" {
-  type = "string"
+  type = string
 }
 
 variable "folder" {
@@ -20,6 +20,7 @@ variable "num_cpus" {
 
 variable "cpu_reservation" {
   description = "Amount of reserved CPU"
+  type        = number
 }
 
 variable "memory" {
@@ -70,28 +71,35 @@ variable "datastore_id" {
   description = "ID of datastore to place VM."
 }
 
+variable "disk_0_thin_provisioned" {
+  description = "thin provisioned true or false"
+  default = false
+}
+
 # vsphere vm
 resource "vsphere_virtual_machine" "vm_1" {
-  name             = "${var.name}"
-  folder           = "${var.folder}"
-  num_cpus         = "${var.num_cpus}"
-  cpu_reservation  = "${var.cpu_reservation}"
-  memory           = "${var.memory}"
-  resource_pool_id = "${var.resource_pool_id}"
-  guest_id         = "${var.guest_id}"
-  scsi_type        = "${var.scsi_type}"
-  datastore_id     = "${var.datastore_id}"
+  name             = var.name
+  folder           = var.folder
+  num_cpus         = var.num_cpus
+  cpu_reservation  = var.cpu_reservation
+  memory           = var.memory
+  resource_pool_id = var.resource_pool_id
+  guest_id         = var.guest_id
+  scsi_type        = var.scsi_type
+  datastore_id     = var.datastore_id
 
   network_interface {
-    network_id   = "${var.network_interface_0_network_id}"
-    adapter_type = "${var.network_interface_0_adapter_type}"
+    network_id   = var.network_interface_0_network_id
+    adapter_type = var.network_interface_0_adapter_type
   }
 
   disk {
-    unit_number = "${var.disk_0_unit_number}"
-    path = "${var.disk_0_path}"
-    label = "${var.disk_0_label}"
-    size = "${var.disk_0_size}"
-    datastore_id = "${var.disk_0_datastore_id}"
+    unit_number      = var.disk_0_unit_number
+    path             = var.disk_0_path
+    label            = var.disk_0_label
+    size             = var.disk_0_size
+    datastore_id     = var.disk_0_datastore_id
+    thin_provisioned = var.disk_0_thin_provisioned
   }
 }
+

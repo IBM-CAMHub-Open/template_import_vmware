@@ -1,5 +1,5 @@
 {
-  "terraform_version": "~> 0.11.0",
+  "terraform_version": ">= 1.0.0",
   "input_datatypes": [],
   "output_datatype": "content_template_output",
   "input_groups": [
@@ -65,6 +65,18 @@
       "description": "Amount of reserved CPU",
       "hidden": false,
       "label": "CPU reservation",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
+      "name": "disk_0_thin_provisioned",
+      "type": "string",
+      "description": "Whether it is thin provisioned",
+      "default": "false",
+      "hidden": false,
+      "label": "Thin Provisioned",
       "secured": false,
       "required": true,
       "immutable": false,
@@ -140,7 +152,7 @@
     },
     {
       "name": "disk_0_unit_number",
-      "type": "string",
+      "type": "number",
       "description": "Disk unit number",
       "hidden": true,
       "label": "Disk unit number",
@@ -173,7 +185,7 @@
     },
     {
       "name": "disk_0_size",
-      "type": "string",
+      "type": "number",
       "description": "",
       "hidden": true,
       "label": "",

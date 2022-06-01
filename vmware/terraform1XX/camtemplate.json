@@ -1,7 +1,7 @@
 {
-  "name": "Import existing VM with a single disk - VMware vSphere",
+  "name": "Import existing VM with a single disk - VMware vSphere for Terraform 1.x.x",
   "description": "This template can be used to import an existing virtual machine with a single disk into IBM Cloud Automation Manager.  It can be modified to import a VM with multiple disks.",
-  "version": "1.0",
+  "version": "1.1",
   "imageUrl": "",
   "image": "",
   "type": "import",
@@ -17,7 +17,7 @@
     "template_source": {
       "githubRepoUrl": "",
       "githubAccessToken": "",
-      "relativePathToTemplateFolder": "vmware/terraform",
+      "relativePathToTemplateFolder": "vmware/terraform1XX",
       "templateFileName": "import.tf"
     }
   },
